@@ -1,0 +1,41 @@
+<!DOCTYPE html
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Título da página</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+    <div class="container">
+        <h1><i>Turing Complete.</i></h1>
+    </div>
+    
+    <div class="loader"></div>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            margin-top: 300px;
+        }
+        .container h1{
+            text-shadow: 1px 3px 2px black;
+        }
+.loader {
+  width: 60px;
+  margin-left: 150px;
+  aspect-ratio: 4;
+  background: radial-gradient(circle closest-side,#000 90%,#0000) 0/calc(100%/3) 100% space;
+  clip-path: inset(0 100% 0 0);
+  animation: l1 1s steps(4) infinite;
+}
+@keyframes l1 {to{clip-path: inset(0 -34% 0 0)}}
+    </style>
+    
+    <script>
+        setTimeout(()=>{
+            window.location.href = "form.html";
+        }, 3000);
+    </script>
+</body>
+  </html>
