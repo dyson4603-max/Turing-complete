@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Título da página</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+    <div class="header">
+        <h1><i>Turing Complete.</i></h1>
+    </div>
+    
+    <div class="container">
+        
+        <ul>
+            <li>≡</li>
+            <li id="tmg">T.M.G</li>
+            <li>E.S.M.I</li>
+            <li>E.G</li>
+        </ul>
+    </div>
+    
+    <div class="semestres" id="semestres">
+        <a href=""><ul>1° semestre</ul></a>
+        <a href="tmg2.html"><ul>2° semestre</ul></a>
+        <a href=""><ul>3° semestre</ul></a>
+        <a href=""><ul>4° semestre</ul></a>
+        <a href=""><ul>5° semestre</ul></a>
+    </div>
+    
+    <style>
+        .header{
+            display: flex;
+            justify-content: center;
+        }
+        .header h1{
+            text-shadow: 1px 2px 3px black;
+        }
+        .container ul{
+            display: flex;
+            float: left;
+            gap: 50px;
+            font-size: 1rem;
+            background-color: black;
+            color: white;
+            margin-top: -2px;
+            padding: 10px 48px;
+        }
+        .semestres{
+            margin-left: 70px;
+            box-shadow: 1px 1px 2px blue;
+            margin-top: 50px;
+            width: 30%;
+            padding: 0px -10px;
+            border-radius: 5px;
+        }
+        .semestres ul{
+            margin-left: -30px;
+        }
+        a{
+            color: #404eff;
+        }
+    </style>
+    <script>
+        const tmg = document.getElementById("tmg");
+        const semestre = document.getElementById("semestres");
+        var count = 0;
+        semestre.style.display = "none";
+       
+        
+        tmg.addEventListener("click", function(event){
+            event.preventDefault();
+            count++;
+            
+            if(count % 2 == 1){
+                tmg.style.color = "yellow";
+                semestre.style.display = "block";
+            }
+            else if(count % 2 == 0){
+                tmg.style.color = "white";
+                semestre.style.display = "none";
+            }
+        })
+    </script>
+</body>
+</html>
