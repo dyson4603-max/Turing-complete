@@ -2,86 +2,1217 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Título da página</title>
+    <title>Low-Level-Learning</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     
     <div class="header">
-        <h1><i>Turing Complete.</i></h1>
+        <h1><i>Turing-Complete.</i></h1>
     </div>
     
     <div class="container">
-        
         <ul>
-            <li>≡</li>
+            <li id="hamburger">≡</li>
             <li id="tmg">T.M.G</li>
             <li>E.S.M.I</li>
             <li>E.G</li>
         </ul>
     </div>
     
-    <div class="semestres" id="semestres">
-        <a href=""><ul>1° semestre</ul></a>
-        <a href="tmg2.html"><ul>2° semestre</ul></a>
-        <a href=""><ul>3° semestre</ul></a>
-        <a href=""><ul>4° semestre</ul></a>
-        <a href=""><ul>5° semestre</ul></a>
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <h3>Menu</h3>
+            <span class="close-btn" id="closeMenu">&times;</span>
+        </div>
+        <nav class="menu-nav">
+            <a href="#" class="menu-item" onclick="showSection('home')">
+                <i class="icon">🏠</i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="menu-item" onclick="showSection('apps')">
+                <i class="icon">📱</i>
+                <span>Apps</span>
+            </a>
+            <a href="#" class="menu-item" onclick="showSection('games')">
+                <i class="icon">🎮</i>
+                <span>Games</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="icon">📚</i>
+                <span>Courses</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="icon">👥</i>
+                <span>People</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="icon">📊</i>
+                <span>Notes</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="icon">📅</i>
+                <span>Calender</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="icon">⚙️</i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+    
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Left Side - Semesters -->
+        <div class="content-left">
+            <div class="semestres" id="semestres">
+                <a href=""><ul>1° semestre</ul></a>
+                <a href="tmg2.html"><ul>2° semestre</ul></a>
+                <a href=""><ul>3° semestre</ul></a>
+                <a href=""><ul>4° semestre</ul></a>
+                <a href=""><ul>5° semestre</ul></a>
+            </div>
+        </div>
+        
+        <!-- Right Side - Dynamic Content -->
+        <div class="content-right">
+            <!-- Home Section -->
+            <div class="section" id="homeSection">
+                <div class="category-grid">
+                    <div class="category-card" onclick="showSection('apps')">
+                        <div class="card-icon">📱</div>
+                        <h3>Apps</h3>
+                        <p>Calculadora, Clima, Lista de Tarefas</p>
+                    </div>
+                    
+                    <div class="category-card" onclick="showSection('games')">
+                        <div class="card-icon">🎮</div>
+                        <h3>Games</h3>
+                        <p>Jogo da Adivinhação, Jogo da Velha, Pedra Papel Tesoura</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Apps Section -->
+            <div class="section hidden" id="appsSection">
+                <div class="section-header">
+                    <h2>📱 Apps</h2>
+                    <button class="back-btn" onclick="showSection('home')">← Voltar</button>
+                </div>
+                
+                <div class="apps-grid">
+                    <!-- Calculator App -->
+                    <div class="app-card">
+                        <div class="app-header">
+                            <h3>🧮 Calculator</h3>
+                        </div>
+                        <div class="calculator">
+                            <div class="calc-display">
+                                <input type="text" id="calcDisplay" readonly>
+                            </div>
+                            <div class="calc-buttons">
+                                <button onclick="clearCalc()" class="calc-btn clear">C</button>
+                                <button onclick="deleteLast()" class="calc-btn">⌫</button>
+                                <button onclick="appendToCalc('/')" class="calc-btn operator">÷</button>
+                                <button onclick="appendToCalc('*')" class="calc-btn operator">×</button>
+                                
+                                <button onclick="appendToCalc('7')" class="calc-btn">7</button>
+                                <button onclick="appendToCalc('8')" class="calc-btn">8</button>
+                                <button onclick="appendToCalc('9')" class="calc-btn">9</button>
+                                <button onclick="appendToCalc('-')" class="calc-btn operator">-</button>
+                                
+                                <button onclick="appendToCalc('4')" class="calc-btn">4</button>
+                                <button onclick="appendToCalc('5')" class="calc-btn">5</button>
+                                <button onclick="appendToCalc('6')" class="calc-btn">6</button>
+                                <button onclick="appendToCalc('+')" class="calc-btn operator">+</button>
+                                
+                                <button onclick="appendToCalc('1')" class="calc-btn">1</button>
+                                <button onclick="appendToCalc('2')" class="calc-btn">2</button>
+                                <button onclick="appendToCalc('3')" class="calc-btn">3</button>
+                                <button onclick="calculateResult()" class="calc-btn equals" rowspan="2">=</button>
+                                
+                                <button onclick="appendToCalc('0')" class="calc-btn zero">0</button>
+                                <button onclick="appendToCalc('.')" class="calc-btn">.</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Weather App -->
+                    <div class="app-card">
+                        <div class="app-header">
+                            <h3>🌤️ Weather App</h3>
+                        </div>
+                        <div class="weather-app">
+                            <div class="weather-input">
+                                <input type="text" id="cityInput" placeholder="Digite sua cidade...">
+                                <button onclick="getWeather()">Buscar</button>
+                            </div>
+                            <div class="weather-display" id="weatherDisplay">
+                                <div class="weather-icon">🌤️</div>
+                                <div class="weather-info">
+                                    <h4>Digite uma cidade</h4>
+                                    <p>Para ver o clima</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Todo List App -->
+                    <div class="app-card">
+                        <div class="app-header">
+                            <h3>📝 Doto List</h3>
+                        </div>
+                        <div class="todo-app">
+                            <div class="todo-input">
+                                <input type="text" id="todoInput" placeholder="Nova tarefa..." onkeypress="handleTodoEnter(event)">
+                                <button onclick="addTodo()">Adicionar</button>
+                            </div>
+                            <ul class="todo-list" id="todoList"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Games Section -->
+            <div class="section hidden" id="gamesSection">
+                <div class="section-header">
+                    <h2>🎮 Games</h2>
+                    <button class="back-btn" onclick="showSection('home')">← Voltar</button>
+                </div>
+                
+                <div class="games-grid">
+                    <!-- Guessing Game -->
+                    <div class="game-card">
+                        <div class="app-header">
+                            <h3>🎯 Random guessing game</h3>
+                        </div>
+                        <div class="guessing-game">
+                            <p>Adivinhe o número entre 1 e 100!</p>
+                            <input type="number" id="guessInput" min="1" max="100" placeholder="Seu palpite...">
+                            <button onclick="makeGuess()">Tentar</button>
+                            <div id="guessResult"></div>
+                            <div id="guessAttempts">Tentativas: 0</div>
+                            <button onclick="resetGuessGame()" class="reset-btn">Novo Jogo</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Tic Tac Toe -->
+                    <div class="game-card">
+                        <div class="app-header">
+                            <h3>⭕ Tic Tac Toe</h3>
+                        </div>
+                        <div class="tic-tac-toe">
+                            <div class="game-status" id="ticTacStatus">Vez do X</div>
+                            <div class="tic-tac-board" id="ticTacBoard">
+                                <button class="tic-cell" onclick="makeMove(0)"></button>
+                                <button class="tic-cell" onclick="makeMove(1)"></button>
+                                <button class="tic-cell" onclick="makeMove(2)"></button>
+                                <button class="tic-cell" onclick="makeMove(3)"></button>
+                                <button class="tic-cell" onclick="makeMove(4)"></button>
+                                <button class="tic-cell" onclick="makeMove(5)"></button>
+                                <button class="tic-cell" onclick="makeMove(6)"></button>
+                                <button class="tic-cell" onclick="makeMove(7)"></button>
+                                <button class="tic-cell" onclick="makeMove(8)"></button>
+                            </div>
+                            <button onclick="resetTicTac()" class="reset-btn">Reiniciar</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Rock Paper Scissors -->
+                    <div class="game-card">
+                        <div class="app-header">
+                            <h3>✂️ Rock Paper Scisorss</h3>
+                        </div>
+                        <div class="rps-game">
+                            <div class="rps-choices">
+                                <button class="rps-btn" onclick="playRPS('rock')">🗿</button>
+                                <button class="rps-btn" onclick="playRPS('paper')">📄</button>
+                                <button class="rps-btn" onclick="playRPS('scissors')">✂️</button>
+                            </div>
+                            <div class="rps-result" id="rpsResult">Escolha sua jogada!</div>
+                            <div class="rps-score" id="rpsScore">Você: 0 | Computador: 0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <style>
-        .header{
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            min-height: 100vh;
+        }
+        
+        .header {
             display: flex;
             justify-content: center;
+            /*background: #333;*/
+            padding: 20px 0;
         }
-        .header h1{
+        
+        .header h1 {
             text-shadow: 1px 2px 3px black;
+            color: black;
+            font-size: 2rem;
         }
-        .container ul{
+        
+        .container ul {
             display: flex;
-            float: left;
             gap: 50px;
             font-size: 1rem;
             background-color: black;
             color: white;
             margin-top: -2px;
             padding: 10px 48px;
+            list-style: none;
         }
-        .semestres{
-            margin-left: 70px;
-            box-shadow: 1px 1px 2px blue;
-            margin-top: 50px;
-            width: 30%;
-            padding: 0px -10px;
+        
+        .container li {
+            cursor: pointer;
+            padding: 8px 15px;
             border-radius: 5px;
+            transition: all 0.3s ease;
         }
-        .semestres ul{
-            margin-left: -30px;
+        
+        .container li:hover {
+            background-color: #333;
         }
-        a{
+        
+        #hamburger {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        /* Side Menu */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -350px;
+            width: 350px;
+            height: 100vh;
+            /*background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);*/
+            background-color: black;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            box-shadow: 2px 0 20px rgba(0,0,0,0.3);
+        }
+        
+        .side-menu.active {
+            left: 0;
+        }
+        
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px;
+            background-color: rgba(0,0,0,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .menu-header h3 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 300;
+        }
+        
+        .close-btn {
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background-color: rgba(231, 76, 60, 0.8);
+            transform: rotate(90deg);
+        }
+        
+        .menu-nav {
+            padding: 20px 0;
+        }
+        
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 18px 30px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(52, 152, 219, 0.2);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .menu-item:hover::before {
+            width: 100%;
+        }
+        
+        .menu-item:hover {
+            border-left-color: #3498db;
+            transform: translateX(10px);
+            color: #ecf0f1;
+        }
+        
+        .menu-item .icon {
+            font-size: 1.4rem;
+            margin-right: 20px;
+            width: 25px;
+            text-align: center;
+        }
+        
+        .menu-item span {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: flex;
+            gap: 30px;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .content-left {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .content-right {
+            flex: 2;
+        }
+        
+        .semestres {
+            margin-left: 70px;
+            box-shadow: 1px 1px 15px rgba(0,0,255,0.3);
+            margin-top: 50px;
+            width: 80%;
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            display: none;
+        }
+        
+        .semestres ul {
+            margin: 8px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            list-style: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .semestres a {
             color: #404eff;
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .semestres a:hover ul {
+            background: #e9ecef;
+            transform: translateX(10px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        
+        /* Sections */
+        .section {
+            transition: opacity 0.3s ease;
+        }
+        
+        .section.hidden {
+            display: none;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .section-header h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+        }
+        
+        .back-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        /* Category Cards (Home) */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .category-card {
+            background: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-color: #3498db;
+        }
+        
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .category-card h3 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .category-card p {
+            color: #7f8c8d;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        /* App/Game Grids */
+        .apps-grid, .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .app-card, .game-card {
+            background: white;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .app-card:hover, .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .app-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .app-header h3 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+        }
+        
+        /* Calculator Styles */
+        .calc-display input {
+            width: 100%;
+            height: 60px;
+            font-size: 1.5rem;
+            text-align: right;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 0 15px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+        }
+        
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        .calc-btn {
+            height: 50px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #ecf0f1;
+        }
+        
+        .calc-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .calc-btn.operator {
+            background: #3498db;
+            color: white;
+        }
+        
+        .calc-btn.equals {
+            background: #e74c3c;
+            color: white;
+            grid-row: span 2;
+        }
+        
+        .calc-btn.clear {
+            background: #e67e22;
+            color: white;
+        }
+        
+        .calc-btn.zero {
+            grid-column: span 2;
+        }
+        
+        /* Weather App */
+        .weather-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .weather-input input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .weather-input button {
+            padding: 12px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .weather-input button:hover {
+            background: #2980b9;
+        }
+        
+        .weather-display {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .weather-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Todo List */
+        .todo-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .todo-input input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+        }
+        
+        .todo-input button {
+            padding: 12px 20px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .todo-input button:hover {
+            background: #219a52;
+        }
+        
+        .todo-list {
+            list-style: none;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .todo-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .todo-item:hover {
+            background: #e9ecef;
+        }
+        
+        .todo-item.completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+        
+        .todo-item button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        /* Games Styles */
+        .guessing-game {
+            text-align: center;
+        }
+        
+        .guessing-game input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-size: 1rem;
+        }
+        
+        .guessing-game button {
+            padding: 12px 25px;
+            background: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .guessing-game button:hover {
+            background: #8e44ad;
+        }
+        
+        .reset-btn {
+            background: #95a5a6 !important;
+            padding: 8px 16px !important;
+            font-size: 0.9rem !important;
+        }
+        
+        .reset-btn:hover {
+            background: #7f8c8d !important;
+        }
+        
+        #guessResult {
+            margin: 15px 0;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        #guessAttempts {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        /* Tic Tac Toe */
+        .tic-tac-toe {
+            text-align: center;
+        }
+        
+        .game-status {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .tic-tac-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            max-width: 250px;
+            margin: 0 auto 20px;
+        }
+        
+        .tic-cell {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #34495e;
+            background: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 8px;
+        }
+        
+        .tic-cell:hover {
+            background: #ecf0f1;
+            transform: scale(1.05);
+        }
+        
+        .tic-cell:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        /* Rock Paper Scissors */
+        .rps-game {
+            text-align: center;
+        }
+        
+        .rps-choices {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .rps-btn {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #3498db;
+            background: white;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .rps-btn:hover {
+            background: #3498db;
+            transform: scale(1.1);
+        }
+        
+        .rps-result {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .rps-score {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .container ul {
+                gap: 20px;
+                padding: 15px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .category-grid, .apps-grid, .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .side-menu {
+                width: 300px;
+                left: -300px;
+            }
         }
     </style>
+    
     <script>
+        // Global Variables
+        const hamburger = document.getElementById("hamburger");
         const tmg = document.getElementById("tmg");
         const semestre = document.getElementById("semestres");
-        var count = 0;
-        semestre.style.display = "none";
-       
+        const sideMenu = document.getElementById("sideMenu");
+        const closeMenu = document.getElementById("closeMenu");
+        const overlay = document.getElementById("overlay");
         
-        tmg.addEventListener("click", function(event){
+        let tmgCount = 0;
+        let currentSection = 'home';
+        
+        // Calculator variables
+        let calcDisplay = '';
+        
+        // Guessing game variables
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let guessAttempts = 0;
+        
+        // Tic Tac Toe variables
+        let ticTacBoard = ['', '', '', '', '', '', '', '', ''];
+        let currentPlayer = 'X';
+        let gameActive = true;
+        
+        // Rock Paper Scissors variables
+        let playerScore = 0;
+        let computerScore = 0;
+        
+        // Initialize
+        semestre.style.display = "none";
+        
+        // Side Menu Functions
+        hamburger.addEventListener("click", function(event) {
             event.preventDefault();
-            count++;
+            sideMenu.classList.add("active");
+            overlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+        });
+        
+        function closeMenuHandler() {
+            sideMenu.classList.remove("active");
+            overlay.classList.remove("active");
+            document.body.style.overflow = "auto";
+        }
+        
+        closeMenu.addEventListener("click", closeMenuHandler);
+        overlay.addEventListener("click", closeMenuHandler);
+        
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                closeMenuHandler();
+            }
+        });
+        
+        // T.M.G functionality
+        tmg.addEventListener("click", function(event) {
+            event.preventDefault();
+            tmgCount++;
             
-            if(count % 2 == 1){
+            if (tmgCount % 2 == 1) {
                 tmg.style.color = "yellow";
                 semestre.style.display = "block";
-            }
-            else if(count % 2 == 0){
+            } else {
                 tmg.style.color = "white";
                 semestre.style.display = "none";
             }
-        })
+        });
+        
+        // Section Navigation
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            const targetSection = document.getElementById(sectionName + 'Section');
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+            
+            currentSection = sectionName;
+            closeMenuHandler();
+        }
+        
+        // Calculator Functions
+        function appendToCalc(value) {
+            calcDisplay += value;
+            document.getElementById('calcDisplay').value = calcDisplay;
+        }
+        
+        function clearCalc() {
+            calcDisplay = '';
+            document.getElementById('calcDisplay').value = calcDisplay;
+        }
+        
+        function deleteLast() {
+            calcDisplay = calcDisplay.slice(0, -1);
+            document.getElementById('calcDisplay').value = calcDisplay;
+        }
+        
+        function calculateResult() {
+            try {
+                const result = eval(calcDisplay.replace('×', '*').replace('÷', '/'));
+                calcDisplay = result.toString();
+                document.getElementById('calcDisplay').value = calcDisplay;
+            } catch (error) {
+                calcDisplay = 'Erro';
+                document.getElementById('calcDisplay').value = calcDisplay;
+                setTimeout(() => {
+                    clearCalc();
+                }, 1500);
+            }
+        }
+        
+        // Weather App Functions
+        function getWeather() {
+            const city = document.getElementById('cityInput').value;
+            const weatherDisplay = document.getElementById('weatherDisplay');
+            
+            if (!city) {
+                alert('Digite o nome de uma cidade!');
+                return;
+            }
+            
+            // Simulated weather data (in a real app, you'd use a weather API)
+            const weatherConditions = [
+                { icon: '☀️', desc: 'Ensolarado', temp: '28°C' },
+                { icon: '⛅', desc: 'Parcialmente nublado', temp: '24°C' },
+                { icon: '🌧️', desc: 'Chuvoso', temp: '18°C' },
+                { icon: '⛈️', desc: 'Tempestade', temp: '22°C' },
+                { icon: '🌤️', desc: 'Partly Sunny', temp: '26°C' }
+            ];
+            
+            const randomWeather = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+            
+            weatherDisplay.innerHTML = `
+                <div class="weather-icon">${randomWeather.icon}</div>
+                <div class="weather-info">
+                    <h4>${city}</h4>
+                    <p>${randomWeather.desc}</p>
+                    <p style="font-size: 1.5rem; color: #3498db; font-weight: bold;">${randomWeather.temp}</p>
+                </div>
+            `;
+        }
+        
+        // Todo List Functions
+        let todos = [];
+        
+        function addTodo() {
+            const todoInput = document.getElementById('todoInput');
+            const todoText = todoInput.value.trim();
+            
+            if (!todoText) {
+                alert('Digite uma tarefa!');
+                return;
+            }
+            
+            const todo = {
+                id: Date.now(),
+                text: todoText,
+                completed: false
+            };
+            
+            todos.push(todo);
+            todoInput.value = '';
+            renderTodos();
+        }
+        
+        function handleTodoEnter(event) {
+            if (event.key === 'Enter') {
+                addTodo();
+            }
+        }
+        
+        function toggleTodo(id) {
+            const todo = todos.find(t => t.id === id);
+            if (todo) {
+                todo.completed = !todo.completed;
+                renderTodos();
+            }
+        }
+        
+        function deleteTodo(id) {
+            todos = todos.filter(t => t.id !== id);
+            renderTodos();
+        }
+        
+        function renderTodos() {
+            const todoList = document.getElementById('todoList');
+            todoList.innerHTML = '';
+            
+            todos.forEach(todo => {
+                const li = document.createElement('li');
+                li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
+                li.innerHTML = `
+                    <input type="checkbox" ${todo.completed ? 'checked' : ''} 
+                           onchange="toggleTodo(${todo.id})">
+                    <span style="flex: 1;">${todo.text}</span>
+                    <button onclick="deleteTodo(${todo.id})">Excluir</button>
+                `;
+                todoList.appendChild(li);
+            });
+        }
+        
+        // Guessing Game Functions
+        function makeGuess() {
+            const guessInput = document.getElementById('guessInput');
+            const guess = parseInt(guessInput.value);
+            const result = document.getElementById('guessResult');
+            const attempts = document.getElementById('guessAttempts');
+            
+            if (!guess || guess < 1 || guess > 100) {
+                alert('Digite um número entre 1 e 100!');
+                return;
+            }
+            
+            guessAttempts++;
+            
+            if (guess === randomNumber) {
+                result.innerHTML = `🎉 Parabéns! Você acertou em ${guessAttempts} tentativas!`;
+                result.style.color = '#27ae60';
+                guessInput.disabled = true;
+            } else if (guess < randomNumber) {
+                result.innerHTML = '📈 Muito baixo! Tente um número maior.';
+                result.style.color = '#3498db';
+            } else {
+                result.innerHTML = '📉 Muito alto! Tente um número menor.';
+                result.style.color = '#e74c3c';
+            }
+            
+            attempts.textContent = `Tentativas: ${guessAttempts}`;
+            guessInput.value = '';
+        }
+        
+        function resetGuessGame() {
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+            guessAttempts = 0;
+            document.getElementById('guessInput').disabled = false;
+            document.getElementById('guessInput').value = '';
+            document.getElementById('guessResult').innerHTML = '';
+            document.getElementById('guessAttempts').textContent = 'Tentativas: 0';
+        }
+        
+        // Tic Tac Toe Functions
+        function makeMove(index) {
+            if (ticTacBoard[index] !== '' || !gameActive) return;
+            
+            ticTacBoard[index] = currentPlayer;
+            document.querySelectorAll('.tic-cell')[index].textContent = currentPlayer;
+            document.querySelectorAll('.tic-cell')[index].disabled = true;
+            
+            if (checkWinner()) {
+                document.getElementById('ticTacStatus').textContent = `${currentPlayer} venceu! 🎉`;
+                gameActive = false;
+                document.querySelectorAll('.tic-cell').forEach(cell => cell.disabled = true);
+                return;
+            }
+            
+            if (ticTacBoard.every(cell => cell !== '')) {
+                document.getElementById('ticTacStatus').textContent = 'Empate! 🤝';
+                gameActive = false;
+                return;
+            }
+            
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            document.getElementById('ticTacStatus').textContent = `Vez do ${currentPlayer}`;
+        }
+        
+        function checkWinner() {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                [0, 4, 8], [2, 4, 6] // diagonals
+            ];
+            
+            return winPatterns.some(pattern => {
+                return pattern.every(index => ticTacBoard[index] === currentPlayer);
+            });
+        }
+        
+        function resetTicTac() {
+            ticTacBoard = ['', '', '', '', '', '', '', '', ''];
+            currentPlayer = 'X';
+            gameActive = true;
+            document.getElementById('ticTacStatus').textContent = 'Vez do X';
+            document.querySelectorAll('.tic-cell').forEach(cell => {
+                cell.textContent = '';
+                cell.disabled = false;
+            });
+        }
+        
+        // Rock Paper Scissors Functions
+        function playRPS(playerChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            const result = document.getElementById('rpsResult');
+            const score = document.getElementById('rpsScore');
+            
+            const icons = {
+                rock: '🗿',
+                paper: '📄',
+                scissors: '✂️'
+            };
+            
+            let resultText = `Você: ${icons[playerChoice]} vs Computador: ${icons[computerChoice]}<br>`;
+            
+            if (playerChoice === computerChoice) {
+                resultText += 'Empate! 🤝';
+            } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper')
+            ) {
+                resultText += 'Você ganhou! 🎉';
+                playerScore++;
+            } else {
+                resultText += 'Computador ganhou! 🤖';
+                computerScore++;
+            }
+            
+            result.innerHTML = resultText;
+            score.textContent = `Você: ${playerScore} | Computador: ${computerScore}`;
+        }
     </script>
 </body>
 </html>
