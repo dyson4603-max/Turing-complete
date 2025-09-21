@@ -7,7 +7,7 @@
   <body>
 
     <div class="header">
-      <a href="tmg2.html"><h1><i><</i></h1></a>
+      <a href="tmg2.html" id="back"><h1><i><</i></h1></a>
     </div>
 
     <div class="images">
@@ -31,5 +31,12 @@
         color: black;
       }
     </style>
+    <script>
+      const back = document.getElementById("back");
+
+      back.addEventListener("click", ()=>{
+        window.location.href = "tmg2.html";
+      });
+    </script>
   </body>
 </html>
